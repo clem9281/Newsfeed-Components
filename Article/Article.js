@@ -17,7 +17,10 @@ class Article {
     // need this stuff for animation
     this.forward = true;
     // you have to create the tween in reverse or it triggers automatically
-    this.tween = TweenMax.to(this.domElement, 1, { height: "400px" }).reverse();
+    this.tween = TweenMax.to(this.domElement, 1, {
+      height: "400px",
+      ease: Back.easeInOut.config(2)
+    }).reverse();
   }
 
   expandArticle() {

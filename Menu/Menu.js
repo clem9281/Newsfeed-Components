@@ -21,7 +21,10 @@ const menuButton = document.querySelector(".header .menu-button");
 // Using your menuButton reference, add a click handler that calls toggleMenu
 
 // animation
-const tween = TweenMax.to(menu, 0.5, { left: 0 }).reverse();
+const tween = TweenMax.to(menu, 0.5, {
+  left: 0,
+  ease: Power2.easeOut
+}).reverse();
 let forward = true;
 
 menuButton.addEventListener("click", toggleMenu);
