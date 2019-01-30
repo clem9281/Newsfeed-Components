@@ -14,9 +14,18 @@ class Article {
     // Set a click handler on the expandButton reference, calling the expandArticle method.
     this.expandButton.addEventListener("click", () => this.expandArticle());
 
+    // prepend close button
+    this.close = document.createElement("p");
+    this.close.className = "close";
+    this.close.textContent = "Mark as Read";
+    this.domElement.prepend(this.close);
+    this.close.addEventListener("click", () => {
+      this.deleteArticle();
+    });
+
     // need this stuff for animation
     this.forward = true;
-    // you have to create the tween in reverse or it triggers automatically
+    // you have to create the tween in reverse or it triggers automatically, and it's defined outside the method that calls it because I want to be able to use tween.play() and tween.reverse()
     this.tween = TweenMax.to(this.domElement, 1, {
       height: "400px",
       ease: Back.easeInOut.config(2)
@@ -38,6 +47,10 @@ class Article {
       this.forward = true;
       this.expandButton.textContent = "Click to Expand";
     }
+  }
+  deleteArticle() {
+    // this.domElement.style.display = "none";
+    TweenMax.to(this.domElement, 1, { opacity: 0, display: "none" });
   }
 }
 
