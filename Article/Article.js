@@ -9,16 +9,32 @@ class Article {
     this.expandButton = this.domElement.querySelector(".expandButton");
 
     // Using your expandButton reference, update the text on your expandButton to say "expand"
-    this.expandButton.textContent = "expand";
+    this.expandButton.textContent = "Click to Expand";
 
     // Set a click handler on the expandButton reference, calling the expandArticle method.
     this.expandButton.addEventListener("click", () => this.expandArticle());
+
+    // need this stuff for animation
+    this.forward = true;
+    // you have to create the tween in reverse or it triggers automatically
+    this.tween = TweenMax.to(this.domElement, 1, { height: "400px" }).reverse();
   }
 
   expandArticle() {
     // Using our reference to the domElement, toggle a class to expand or hide the article.
-    this.domElement.classList.toggle("article-open");
-    console.log(this.domElement);
+    // this.domElement.classList.toggle("article-open");
+    this.animate();
+  }
+  animate() {
+    if (this.forward) {
+      this.tween.play();
+      this.forward = false;
+      this.expandButton.textContent = "Click to Close";
+    } else {
+      this.tween.reverse();
+      this.forward = true;
+      this.expandButton.textContent = "Click to Expand";
+    }
   }
 }
 
