@@ -49,14 +49,12 @@ class Article {
     }
   }
   deleteArticle() {
-    // this.domElement.style.display = "none";
     let deleteTween = TweenMax.to(this.domElement, 1, {
       opacity: 0,
       display: "none"
     });
     // i thought it would be fun if the removed article reappeared at the bottom of the articles, but greyed out and the mark as read button removed
     deleteTween.eventCallback("onComplete", () => {
-      // let removedArticle =
       document.querySelector(".articles").appendChild(this.domElement);
       this.domElement.style.background = "grey";
       this.close.remove();
